@@ -7,9 +7,13 @@ import json
 import os
 from datetime import datetime
 import sqlite3
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key-change-this'  # Change this in production
+app.secret_key = 'fgljsdfhgkjsdhfgsdnfvkjnsdnvsdkjfbn'  # Change this in production
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cardiovision.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -459,11 +463,6 @@ def clear_chat():
     ChatSession.query.filter_by(user_id=current_user.id).delete()
     db.session.commit()
     return jsonify({'success': True})
-
-# Initialize database
-@app.before_first_request
-def create_tables():
-    db.create_all()
 
 if __name__ == '__main__':
     with app.app_context():
