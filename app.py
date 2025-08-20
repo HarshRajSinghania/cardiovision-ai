@@ -99,7 +99,7 @@ def get_ai_response(prompt, system_message="You are a helpful medical AI assista
     }
     
     data = {
-        "model": "deepseek/deepseek-chat",
+        "model": "deepseek/deepseek-r1:free",
         "messages": [
             {"role": "system", "content": system_message},
             {"role": "user", "content": prompt}
