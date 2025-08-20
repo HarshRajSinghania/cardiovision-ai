@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - CardioVision AI{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h2 class="text-primary">
+                    <i class="fas fa-tachometer-alt me-2"></i>Welcome, {{ current_user.first_name }}!
+                </h2>
+                <p class="text-muted">Your personal health dashboard</p>
+            </div>
+            <div>
+                <a href="/logout" class="btn btn-outline-danger">
+                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row g-4 mb-5">
+    <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-heart feature-icon text-danger"></i>
+                <h6 class="card-title">Heart Risk Assessment</h6>
+                <a href="/heart-attack" class="btn btn-danger btn-sm">
+                    <i class="fas fa-stethoscope me-1"></i>Take Assessment
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-brain feature-icon text-info"></i>
+                <h6 class="card-title">Stroke Risk Assessment</h6>
+                <a href="/stroke" class="btn btn-info btn-sm">
+                    <i class="fas fa-user-md me-1"></i>Take Assessment
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-pills feature-icon text-warning"></i>
+                <h6 class="card-title">Medication Analysis</h6>
+                <a href="/medication-analysis" class="btn btn-warning btn-sm">
+                    <i class="fas fa-search me-1"></i>Analyze Meds
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-comments feature-icon text-success"></i>
+                <h6 class="card-title">AI Health Chat</h6>
+                <a href="/ai-chat" class="btn btn-success btn-sm">
+                    <i class="fas fa-robot me-1"></i>Start Chat
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Assessments -->
+<div class="row">
+    <!-- Heart Attack Assessments -->
+    <div class="col-lg-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h6 class="mb-0"><i class="fas fa-heart me-2"></i>Recent Heart Assessments</h6>
+            </div>
+            <div class="card-body">
+                {% if recent_heart %}
+                    {% for assessment in recent_heart %}
+                        <div class="border-bottom pb-2 mb-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold risk-{{ assessment.risk_level.lower() }}">
+                                    {{ assessment.score }}/100 ({{ assessment.risk_level }})
+                                </span>
+                                <small class="text-muted">{{ assessment.created_at.strftime('%m/%d/%Y') }}</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted mb-0">No assessments yet. <a href="/heart-attack">Take your first assessment</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stroke Assessments -->
+    <div class="col-lg-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h6 class="mb-0"><i class="fas fa-brain me-2"></i>Recent Stroke Assessments</h6>
+            </div>
+            <div class="card-body">
+                {% if recent_stroke %}
+                    {% for assessment in recent_stroke %}
+                        <div class="border-bottom pb-2 mb-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold risk-{{ assessment.risk_level.lower() }}">
+                                    {{ assessment.score }}/100 ({{ assessment.risk_level }})
+                                </span>
+                                <small class="text-muted">{{ assessment.created_at.strftime('%m/%d/%Y') }}</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted mb-0">No assessments yet. <a href="/stroke">Take your first assessment</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Medication Analyses -->
+    <div class="col-lg-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-warning text-white">
+                <h6 class="mb-0"><i class="fas fa-pills me-2"></i>Recent Medication Analyses</h6>
+            </div>
+            <div class="card-body">
+                {% if recent_medications %}
+                    {% for analysis in recent_medications %}
+                        <div class="border-bottom pb-2 mb-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold text-truncate" style="max-width: 150px;">
+                                    {{ analysis.medications.split('\n')[0][:30] }}...
+                                </span>
+                                <small class="text-muted">{{ analysis.created_at.strftime('%m/%d/%Y') }}</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted mb-0">No analyses yet. <a href="/medication-analysis">Analyze your medications</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Health Summary -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h6 class="mb-0"><i class="fas fa-chart-line me-2"></i>Your Health Summary</h6>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <h4 class="text-danger">{{ recent_heart|length }}</h4>
+                        <p class="text-muted mb-0">Heart Assessments</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="text-info">{{ recent_stroke|length }}</h4>
+                        <p class="text-muted mb-0">Stroke Assessments</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="text-warning">{{ recent_medications|length }}</h4>
+                        <p class="text-muted mb-0">Medication Analyses</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="text-success">{{ current_user.created_at.strftime('%b %Y') }}</h4>
+                        <p class="text-muted mb-0">Member Since</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

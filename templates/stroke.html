@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block title %}Stroke Risk Assessment - CardioVision AI{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h2 class="text-info"><i class="fas fa-brain me-2"></i>Stroke Risk Assessment</h2>
+    <p class="text-muted">Please answer the following questions honestly for an accurate stroke risk evaluation</p>
+</div>
+
+<form method="POST" action="/stroke">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Stroke Warning Signs (BE-FAST)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="weakness_numbness" value="yes" id="weakness_numbness_yes">
+                                <label class="form-check-label text-success" for="weakness_numbness_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="weakness_numbness" value="no" id="weakness_numbness_no" checked>
+                                <label class="form-check-label text-danger" for="weakness_numbness_no">No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you experience sudden weakness or numbness in face, arm, or leg (especially one side)?</label>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="speech_difficulty" value="yes" id="speech_difficulty_yes">
+                                <label class="form-check-label text-success" for="speech_difficulty_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="speech_difficulty" value="no" id="speech_difficulty_no" checked>
+                                <label class="form-check-label text-danger" for="speech_difficulty_no">No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have sudden difficulty speaking or understanding speech?</label>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vision_problems" value="yes" id="vision_problems_yes">
+                                <label class="form-check-label text-success" for="vision_problems_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vision_problems" value="no" id="vision_problems_no" checked>
+                                <label class="form-check-label text-danger" for="vision_problems_no">No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have sudden vision problems (one or both eyes)?</label>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="balance_issues" value="yes" id="balance_issues_yes">
+                                <label class="form-check-label text-success" for="balance_issues_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="balance_issues" value="no" id="balance_issues_no" checked>
+                                <label class="form-check-label text-danger" for="balance_issues_no">No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have sudden dizziness, loss of balance, or trouble walking?</label>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="severe_headache" value="yes" id="severe_headache_yes">
+                                <label class="form-check-label text-success" for="severe_headache_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="severe_headache" value="no" id="severe_headache_no" checked>
+                                <label class="form-check-label text-danger" for="severe_headache_no">No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have sudden severe headache with no known cause?</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-header bg-warning text-white">
+                    <h5 class="mb-0"><i class="fas fa-notes-medical me-2"></i>Medical Conditions & Risk Factors</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have high blood pressure?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="high_bp" value="yes" id="high_bp_yes">
+                                <label class="form-check-label text-success" for="high_bp_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="high_bp" value="no" id="high_bp_no" checked>
+                                <label class="form-check-label text-danger" for="high_bp_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have diabetes?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="diabetes" value="yes" id="diabetes_yes">
+                                <label class="form-check-label text-success" for="diabetes_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="diabetes" value="no" id="diabetes_no" checked>
+                                <label class="form-check-label text-danger" for="diabetes_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have high cholesterol?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="high_cholesterol" value="yes" id="high_cholesterol_yes">
+                                <label class="form-check-label text-success" for="high_cholesterol_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="high_cholesterol" value="no" id="high_cholesterol_no" checked>
+                                <label class="form-check-label text-danger" for="high_cholesterol_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have atrial fibrillation or irregular heartbeat?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="irregular_heartbeat" value="yes" id="irregular_heartbeat_yes">
+                                <label class="form-check-label text-success" for="irregular_heartbeat_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="irregular_heartbeat" value="no" id="irregular_heartbeat_no" checked>
+                                <label class="form-check-label text-danger" for="irregular_heartbeat_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you smoke regularly?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="smoking" value="yes" id="smoking_yes">
+                                <label class="form-check-label text-success" for="smoking_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="smoking" value="no" id="smoking_no" checked>
+                                <label class="form-check-label text-danger" for="smoking_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you drink alcohol excessively?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="alcohol" value="yes" id="alcohol_yes">
+                                <label class="form-check-label text-success" for="alcohol_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="alcohol" value="no" id="alcohol_no" checked>
+                                <label class="form-check-label text-danger" for="alcohol_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have obesity or overweight issues?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="obesity" value="yes" id="obesity_yes">
+                                <label class="form-check-label text-success" for="obesity_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="obesity" value="no" id="obesity_no" checked>
+                                <label class="form-check-label text-danger" for="obesity_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have a sedentary (inactive) lifestyle?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sedentary" value="yes" id="sedentary_yes">
+                                <label class="form-check-label text-success" for="sedentary_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sedentary" value="no" id="sedentary_no" checked>
+                                <label class="form-check-label text-danger" for="sedentary_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you have a family history of stroke?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="family_history" value="yes" id="family_history_yes">
+                                <label class="form-check-label text-success" for="family_history_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="family_history" value="no" id="family_history_no" checked>
+                                <label class="form-check-label text-danger" for="family_history_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Are you above 55 years of age?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="age" value="yes" id="age_yes">
+                                <label class="form-check-label text-success" for="age_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="age" value="no" id="age_no" checked>
+                                <label class="form-check-label text-danger" for="age_no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Do you live under high stress?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="stress" value="yes" id="stress_yes">
+                                <label class="form-check-label text-success" for="stress_yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="stress" value="no" id="stress_no" checked>
+                                <label class="form-check-label text-danger" for="stress_no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-info btn-lg">
+                    <i class="fas fa-calculator me-2"></i>Calculate Stroke Risk & Get AI Analysis
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}CardioVision AI - Your Health Companion{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary mb-3">
+        <i class="fas fa-heartbeat me-3"></i>CardioVision AI
+    </h1>
+    <p class="lead text-muted">Your intelligent companion for cardiovascular health assessment and medical guidance</p>
+</div>
+
+<div class="row g-4 mb-5">
+    <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-heart feature-icon text-danger"></i>
+                <h5 class="card-title">Heart Attack Risk</h5>
+                <p class="card-text">Comprehensive assessment of your cardiovascular risk factors with AI-powered recommendations and personal record keeping.</p>
+                <a href="/register" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-2"></i>Get Started
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-brain feature-icon text-info"></i>
+                <h5 class="card-title">Stroke Risk</h5>
+                <p class="card-text">Evaluate your stroke risk using evidence-based factors and track your health progress over time.</p>
+                <a href="/register" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-2"></i>Get Started
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-pills feature-icon text-warning"></i>
+                <h5 class="card-title">Medication Analysis</h5>
+                <p class="card-text">Analyze potential drug interactions and maintain a secure record of all your medication analyses.</p>
+                <a href="/register" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-2"></i>Get Started
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="fas fa-comments feature-icon text-success"></i>
+                <h5 class="card-title">AI Health Chat</h5>
+                <p class="card-text">Get personalized answers to your health questions with conversation history saved to your account.</p>
+                <a href="/register" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-2"></i>Get Started
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-lg-8 mx-auto text-center">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h4><i class="fas fa-user-shield me-2"></i>Secure Patient Portal</h4>
+                <p class="mb-3">Create your personal account to access all features and maintain a secure record of your health assessments.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="/register" class="btn btn-light btn-lg">
+                        <i class="fas fa-user-plus me-2"></i>Create Account
+                    </a>
+                    <a href="/login" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="alert alert-info">
+            <h5><i class="fas fa-info-circle me-2"></i>Important Disclaimer</h5>
+            <p class="mb-0">
+                CardioVision AI provides educational information and risk assessments based on established medical guidelines. 
+                This tool is not a substitute for professional medical advice, diagnosis, or treatment. 
+                Always consult with qualified healthcare professionals for medical decisions.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-lg-3">
+        <div class="text-center">
+            <i class="fas fa-shield-alt feature-icon text-success"></i>
+            <h5>Evidence-Based</h5>
+            <p class="text-muted">Our assessments are based on established medical research and clinical guidelines.</p>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="text-center">
+            <i class="fas fa-brain feature-icon text-primary"></i>
+            <h5>AI-Powered</h5>
+            <p class="text-muted">Advanced AI provides personalized insights and recommendations for your health.</p>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="text-center">
+            <i class="fas fa-database feature-icon text-info"></i>
+            <h5>Personal Records</h5>
+            <p class="text-muted">Securely store and track your health assessments and progress over time.</p>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="text-center">
+            <i class="fas fa-lock feature-icon text-warning"></i>
+            <h5>Privacy Secure</h5>
+            <p class="text-muted">Your health information is encrypted and accessible only to you with secure login.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Medication Analysis - CardioVision AI{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h2 class="text-warning"><i class="fas fa-pills me-2"></i>Medication Interaction Analysis</h2>
+    <p class="text-muted">Enter your medications to analyze potential interactions and side effects</p>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        {% if error %}
+        <div class="alert alert-danger">
+            <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+        </div>
+        {% endif %}
+        
+        <div class="card">
+            <div class="card-header bg-warning text-white">
+                <h5 class="mb-0"><i class="fas fa-list me-2"></i>Enter Your Medications</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/medication-analysis">
+                    <div class="mb-4">
+                        <label for="medications" class="form-label fw-bold">List your medications (one per line or separated by commas):</label>
+                        <textarea class="form-control" id="medications" name="medications" rows="8" 
+                                  placeholder="Example:
+Aspirin 81mg daily
+Lisinopril 10mg
+Metformin 500mg twice daily
+Atorvastatin 20mg
+Vitamin D3 1000 IU
+
+You can also include:
+- Dosages
+- Frequency
+- Over-the-counter medications
+- Supplements
+- Herbal remedies" required></textarea>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Include prescription medications, over-the-counter drugs, supplements, and herbal remedies. 
+                            The more detailed information you provide, the better the analysis.
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-warning btn-lg">
+                            <i class="fas fa-search me-2"></i>Analyze Medications with AI
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-info text-white">
+                <h6 class="mb-0"><i class="fas fa-lightbulb me-2"></i>What This Analysis Includes</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Drug-drug interactions</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Common side effects</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Serious warnings</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Monitoring recommendations</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Timing suggestions</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Safety precautions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="alert alert-warning mt-4">
+            <h6><i class="fas fa-exclamation-triangle me-2"></i>Important Disclaimer</h6>
+            <p class="mb-0">
+                This analysis is for educational purposes only and should not replace professional medical advice. 
+                Always consult your healthcare provider or pharmacist before making any changes to your medications. 
+                In case of emergency or severe side effects, seek immediate medical attention.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
