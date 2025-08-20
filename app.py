@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'fgljsdfhgkjsdhfgsdnfvkjnsdnvsdkjfbn'  # Change this in production
+app.secret_key = os.getenv('APP_SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cardiovision.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
